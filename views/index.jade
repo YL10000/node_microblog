@@ -1,0 +1,29 @@
+extends layout
+   
+block content
+    .jumbotron
+        if  !user
+            h1  欢迎来到Microblog
+                p   Microblog是一个基于node.js的微博客系统
+                p
+                    a.btn.btn-primary.btn-large(href='/login')登录
+                    &nbsp;
+                    a.btn.btn-default.btn-large(href='/reg')立即注册
+        else
+            form.form-horizontal(method='post',action='/post')
+                div.form-group
+                    .col-sm-10
+                        input.form-control#post(name='post')
+                    button.btn.btn-primary.col-sm-2(aria-label="Left Align")
+                        span.glyphicon.glyphicon-share-alt(aria-hidden="true")
+                        发言
+
+        
+    -   for (var i=0;i<posts.length;i++){
+            if i%3==0
+                .row
+            .col-md-4
+                h2  #{posts[i].user}说
+                p   #{posts[i].post}
+    -   }
+                
